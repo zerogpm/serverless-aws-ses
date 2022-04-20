@@ -79,7 +79,7 @@ _Below is an example of how you can instruct your audience on installing and set
 ## Roadmap
 
 - [x] some issues
-- [ ] make sms works
+- [ ] make ses works
 - [ ] Multi-language Support
     - [ ] Chinese
 

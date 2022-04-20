@@ -4,11 +4,20 @@ frameworkVersion: '3'
 provider:
   name: aws
   runtime: nodejs14.x
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - "ses:*"
+          Resource:
+            - "*"
 
 functions:
-  hello:
-    handler: handler.hello
+  create:
+    handler: handler.createContact
     events:
       - httpApi:
-          path: /
-          method: get
+          path: /contact-us
+          method: post
+          cors: true
