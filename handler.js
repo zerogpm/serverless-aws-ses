@@ -16,23 +16,44 @@ module.exports.createContact = async (event, context) => {
         },
         null,
         2
-      ),
+      )
     }
   }
 
   const params = {
-
+    Destination: {
+      ToAddresses: [to]
+    },
+    Message: {
+      Body: {
+        Text: { Data: message }
+      },
+      Subject: { Data: subject },
+    },
+    Source: from
   }
 
-  return {
-    statusCode: 200,
-    body: JSON.stringify(
-      {
-        message: "Go Serverless v3.0! Your function executed successfully!",
-        input: event,
-      },
-      null,
-      2
-    ),
-  };
+  try {
+    await ses.sendEmail(params).promise();
+    return {
+      statusCode: 200,
+      body: JSON.stringify(
+        {
+          message: "email sent!",
+          success: true,
+        }
+      )
+    }
+  } catch (error) {
+    console.log(error);
+    return {
+      statusCode: 400,
+      body: JSON.stringify(
+        {
+          message: "The email failed to send",
+          input: event,
+        }
+      )
+    }
+  }
 };

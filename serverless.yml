@@ -20,4 +20,3 @@ functions:
       - httpApi:
           path: /contact-us
           method: post
-          cors: true
