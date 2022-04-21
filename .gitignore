@@ -7,3 +7,6 @@ jspm_packages
 
 # ide no use
 .idea/
+
+#Api script
+rest-api_3.http
