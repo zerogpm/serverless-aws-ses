@@ -71,6 +71,11 @@ _Below is an example of how you can instruct your audience on installing and set
    git clone https://github.com/zerogpm/serverless-aws-sms
    ```
 
+2. Deploy your lambda function
+   ```sh
+    sls deploy
+   ```
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
