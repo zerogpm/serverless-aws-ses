@@ -3,7 +3,7 @@ const AWS = require("aws-sdk")
 const ses = new AWS.SES()
 
 module.exports.createContact = async (event, context) => {
-  console.log("Event::", event);
+
   const {to, from, subject, message} = JSON.parse(event.body)
 
   if (!to || !from || !subject || !message) {
@@ -12,7 +12,7 @@ module.exports.createContact = async (event, context) => {
       body: JSON.stringify(
         {
           message: "input values missing",
-          input: event,
+          input: JSON.parse(event.body),
         },
         null,
         2
@@ -26,9 +26,18 @@ module.exports.createContact = async (event, context) => {
     },
     Message: {
       Body: {
-        Text: { Data: message }
+        Html: {
+          Data: `<strong>Message</strong>: ${subject}`,
+          Charset: 'UTF-8'
+        },
+        Text: {
+          Data: message
+        }
+
       },
-      Subject: { Data: subject },
+      Subject: {
+        Data: "Test Email"
+      }
     },
     Source: from
   }
