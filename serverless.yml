@@ -2,6 +2,8 @@ service: aws-ses-email
 frameworkVersion: '3'
 
 provider:
+  httpApi:
+    cors: true
   name: aws
   runtime: nodejs14.x
   iam:
