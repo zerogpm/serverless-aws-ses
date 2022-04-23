@@ -32,16 +32,12 @@ module.exports.createContact = async (event, context) => {
     Message: {
       Body: {
         Html: {
-          Data: `<strong>Message</strong>: ${subject}`,
+          Data: `<strong>Message</strong>: ${message}`,
           Charset: 'UTF-8'
-        },
-        Text: {
-          Data: message
         }
-
       },
       Subject: {
-        Data: "Test Email"
+        Data: subject
       }
     },
     Source: from
